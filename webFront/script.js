@@ -1,5 +1,5 @@
 // declare variables as a global variable
-let filmsMat, trainedModelMat=[], filmIndex, distances, recommendations, given_film
+let filmsMat, trainedModelMat=[], distances, given_film, sorted_distances, enumerated_distances = []
 
 const films_csv_path = '../filmNames.csv'
 fetch(films_csv_path)
@@ -25,12 +25,23 @@ document.getElementById('start').addEventListener('click', (ev) => {
     document.getElementById('input').valueOf().value = ''
     submitForm(given_film)
 })
-function submitForm(given_film) {
+
+const submitForm = (given_film) => {
     for (let i = 0; i < filmsMat.length; i++) {
         if (filmsMat[i] === given_film) {
-            console.log(i, filmsMat[i])
+            distances = trainedModelMat[i]
         }
     }
-
+    sorted_distances = enumerate(distances).sort((a, b) => b[1] - a[1])
+    console.log(sorted_distances)
+    for (let i = 1; i < 10; i++) {
+        console.log(filmsMat[sorted_distances[i][0]])
+    }
 }
 
+const enumerate = (distances) => {
+    for (let i = 0; i < distances.length; i++) {
+        enumerated_distances.push([i, distances[i]])
+    }
+    return enumerated_distances
+}
