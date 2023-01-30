@@ -34,9 +34,13 @@ const submitForm = (given_film) => {
     }
     sorted_distances = enumerate(distances).sort((a, b) => b[1] - a[1])
     console.log(sorted_distances)
+    let similar_movies = ''
     for (let i = 1; i < 10; i++) {
-        console.log(filmsMat[sorted_distances[i][0]])
+        similar_movies = similar_movies + `<br>${i} - ` + filmsMat[sorted_distances[i][0]]
     }
+    console.log(similar_movies)
+    document.getElementById('response').style.display = "flex"
+    document.getElementById('response').innerHTML = `Similar movies with ${given_film} :` + similar_movies
 }
 
 const enumerate = (distances) => {
@@ -45,3 +49,7 @@ const enumerate = (distances) => {
     }
     return enumerated_distances
 }
+
+
+
+
