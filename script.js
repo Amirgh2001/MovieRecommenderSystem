@@ -1,14 +1,14 @@
 // declare variables as a global variable
 let filmsMat, trainedModelMat=[]
 
-const films_csv_path = '../filmNames.csv'
+const films_csv_path = './filmNames.csv'
 fetch(films_csv_path)
     .then(response => response.text())
     .then(data => {
         filmsMat = data.split('\n')
         })
 
-const trainedModelMat_path = '../trainedModelMat.csv'
+const trainedModelMat_path = './trainedModelMat.csv'
 fetch(trainedModelMat_path)
     .then(response => response.text())
     .then(data => {
@@ -17,6 +17,8 @@ fetch(trainedModelMat_path)
         rows.map(str => {
             trainedModelMat.push(str.split(','))
         })
+        document.getElementById('testtt').innerHTML = 'ready to go'
+        document.getElementById('testtt').style.backgroundColor = '#53BB57'
     })
 
 document.getElementById('start').addEventListener('click', (ev) => {
@@ -41,6 +43,7 @@ const submitForm = (given_film) => {
     }
     console.log(similar_movies)
     document.getElementById('response').style.display = "flex"
+    document.getElementById('testtt').style.display = "none"
     document.getElementById('response').innerHTML = `Similar movies with ${given_film} :<br>` + similar_movies
 }
 

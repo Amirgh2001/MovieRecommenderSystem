@@ -3,3 +3,6 @@ credits.csv
 filmNames.csv
 trainedModelMat.csv
 testcsv.csv
+.DS_Store
+.idea
+.ipynb_checkpoints
